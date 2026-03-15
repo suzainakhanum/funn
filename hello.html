@@ -3,50 +3,108 @@
 <head>
 <title>Secret Message</title>
 <style>
-body{
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  height:100vh;
-  background: linear-gradient(135deg, #ffe6f0 0%, #ffcccb 100%);
-  font-family: 'Arial', sans-serif;
-  margin:0;
-  overflow:hidden;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-h1{
-  font-size:60px;
-  color:#ff4081;
-  text-align:center;
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #ffe6f0 0%, #ffcccb 100%);
+  font-family: 'Arial', sans-serif;
+  overflow: hidden;
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  opacity: 0;
+  transform: translateY(50px);
+  animation: fadeInUp 1s ease forwards;
+}
+
+.page.active {
+  opacity: 1;
+}
+
+.page h1, .page h2 {
+  font-size: 4rem;
+  color: #ff4081;
   text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
   animation: pulse 2s infinite;
-  margin:0;
-  position:relative;
+  margin-bottom: 2rem;
+}
+
+.page h2 {
+  font-size: 2.5rem;
+  margin-bottom: 3rem;
+}
+
+.btn {
+  background: linear-gradient(45deg, #ff4081, #ff69b4);
+  color: white;
+  border: none;
+  padding: 15px 40px;
+  font-size: 1.5rem;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0 8px 25px rgba(255,64,129,0.4);
+  transition: all 0.3s ease;
+  animation: bounce 2s infinite;
+}
+
+.btn:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 35px rgba(255,64,129,0.6);
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes pulse {
-  0% { transform: scale(1); }
+  0%, 100% { transform: scale(1); }
   50% { transform: scale(1.05); }
-  100% { transform: scale(1); }
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-10px); }
+  60% { transform: translateY(-5px); }
 }
 
 /* Floating hearts */
 body::before {
   content: '💖 💕 💗 💖';
-  position: absolute;
+  position: fixed;
   top: 20%;
   left: 10%;
-  font-size: 30px;
+  font-size: 2rem;
   animation: float 6s infinite linear;
+  z-index: 1;
 }
 
 body::after {
   content: '💕 💗 💖 💕';
-  position: absolute;
+  position: fixed;
   bottom: 20%;
   right: 10%;
-  font-size: 30px;
+  font-size: 2rem;
   animation: float 8s infinite linear reverse;
+  z-index: 1;
 }
 
 @keyframes float {
@@ -57,12 +115,35 @@ body::after {
 
 /* Responsive */
 @media (max-width: 768px) {
-  h1 { font-size: 40px; }
+  .page h1 { font-size: 2.5rem; }
+  .page h2 { font-size: 1.8rem; }
+  .btn { font-size: 1.2rem; padding: 12px 30px; }
 }
 </style>
 </head>
 
 <body>
-<h1>Hello cutie 💖 get well soon</h1>
+  <!-- Page 1: "This is from suzaina" + Click button -->
+  <div class="page active" id="page1">
+    <h2>This is from suzaina</h2>
+    <button class="btn" onclick="nextPage()">Click here 💖</button>
+  </div>
+
+  <!-- Page 2: "Hello cutie get well soon" -->
+  <div class="page" id="page2">
+    <h1>Hello cutie 💖 get well soon</h1>
+  </div>
+
+<script>
+function nextPage() {
+  document.getElementById('page1').classList.remove('active');
+  document.getElementById('page2').classList.add('active');
+  
+  // Smooth transition
+  setTimeout(() => {
+    document.getElementById('page1').style.display = 'none';
+  }, 500);
+}
+</script>
 </body>
 </html>
