@@ -1,148 +1,91 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Secret Message</title>
+
 <style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+
+body{
+margin:0;
+font-family:Arial;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+background:linear-gradient(135deg,#ffe6f0,#ffcccb);
+overflow:hidden;
 }
 
-body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  background: linear-gradient(135deg, #ffe6f0 0%, #ffcccb 100%);
-  font-family: 'Arial', sans-serif;
-  overflow: hidden;
+/* Page layout */
+
+.page{
+position:absolute;
+width:100%;
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+opacity:0;
+transition:0.6s;
 }
 
-.page {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  width: 100%;
-  height: 100vh;
-  position: absolute;
-  top: 0;
-  left: 0;
-  opacity: 0;
-  transform: translateY(50px);
-  transition: all 0.8s ease;
+.page.active{
+opacity:1;
 }
 
-.page.active {
-  opacity: 1;
-  transform: translateY(0);
+/* Text */
+
+h1,h2{
+color:#ff4081;
 }
 
-#page1 h2 {
-  font-size: 3.5rem;
-  color: #ff4081;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
-  animation: pulse 2s infinite;
-  margin-bottom: 3rem;
+/* Button */
+
+button{
+margin-top:30px;
+padding:15px 40px;
+font-size:20px;
+border:none;
+border-radius:40px;
+background:#ff4081;
+color:white;
+cursor:pointer;
+box-shadow:0 8px 20px rgba(0,0,0,0.2);
 }
 
-#page2 h1 {
-  font-size: 4.5rem;
-  color: #ff4081;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
-  animation: pulse 2s infinite;
+button:hover{
+background:#ff2f70;
 }
 
-.btn {
-  background: linear-gradient(45deg, #ff4081, #ff69b4);
-  color: white;
-  border: none;
-  padding: 18px 50px;
-  font-size: 1.8rem;
-  border-radius: 50px;
-  cursor: pointer;
-  box-shadow: 0 10px 30px rgba(255,64,129,0.4);
-  animation: bounce 2s infinite;
-  transition: all 0.3s ease;
-  font-weight: bold;
-}
-
-.btn:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 15px 40px rgba(255,64,129,0.6);
-}
-
-@keyframes pulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.05); }
-}
-
-@keyframes bounce {
-  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-  40% { transform: translateY(-12px); }
-  60% { transform: translateY(-6px); }
-}
-
-/* Floating hearts */
-body::before {
-  content: '💖 💕 💗';
-  position: fixed;
-  top: 15%;
-  left: 5%;
-  font-size: 2.5rem;
-  animation: float 6s infinite linear;
-  z-index: 1;
-}
-
-body::after {
-  content: '💕 💗 💖';
-  position: fixed;
-  bottom: 15%;
-  right: 5%;
-  font-size: 2.5rem;
-  animation: float 8s infinite linear reverse;
-  z-index: 1;
-}
-
-@keyframes float {
-  0% { transform: translateY(0px) rotate(0deg); }
-  50% { transform: translateY(-25px) rotate(180deg); }
-  100% { transform: translateY(0px) rotate(360deg); }
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  #page1 h2 { font-size: 2.5rem; }
-  #page2 h1 { font-size: 3rem; }
-  .btn { font-size: 1.4rem; padding: 15px 35px; }
-}
 </style>
 </head>
 
 <body>
-  <!-- Page 1: ONLY "this is from suzaina" + button -->
-  <div class="page active" id="page1">
-    <h2>This is from suzaina</h2>
-    <button class="btn" onclick="nextPage()">click here</button>
-  </div>
 
-  <!-- Page 2: ONLY "get well soon" -->
-  <div class="page" id="page2">
-    <h1> Hello cutie!! Get well soon 💖</h1>
-  </div>
+<!-- Page 1 -->
+<div id="page1" class="page active">
+<h2>This is from Suzaina</h2>
+<button onclick="nextPage()">Click Me</button>
+</div>
+
+<!-- Page 2 -->
+<div id="page2" class="page">
+<h1>Hello cutie!! Get well soon 💖</h1>
+</div>
 
 <script>
-function nextPage() {
-  // Hide page 1
-  document.getElementById('page1').classList.remove('active');
-  
-  // Show page 2 after smooth transition
-  setTimeout(() => {
-    document.getElementById('page2').classList.add('active');
-  }, 400);
+
+function nextPage(){
+document.getElementById("page1").classList.remove("active");
+document.getElementById("page2").classList.add("active");
 }
+
 </script>
+
 </body>
 </html>
