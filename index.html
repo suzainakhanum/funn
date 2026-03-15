@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Secret Message</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+background:#ffe6f0;
+}
+
+/* Page style */
+
+.page{
+display:none;
+flex-direction:column;
+align-items:center;
+text-align:center;
+}
+
+.page.active{
+display:flex;
+}
+
+/* Button */
+
+button{
+margin-top:20px;
+padding:15px 40px;
+font-size:18px;
+border:none;
+border-radius:30px;
+background:#ff4081;
+color:white;
+cursor:pointer;
+}
+
+button:hover{
+background:#ff2f70;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- Page 1 -->
+<div id="page1" class="page active">
+<h2>This is from Suzaina</h2>
+<button onclick="showPage2()">Click Me</button>
+</div>
+
+<!-- Page 2 -->
+<div id="page2" class="page">
+<h1>Hello cutie!! Get well soon 💖</h1>
+</div>
+
+<script>
+
+function showPage2(){
+document.getElementById("page1").classList.remove("active");
+document.getElementById("page2").classList.add("active");
+}
+
+</script>
+
+</body>
+</html>
