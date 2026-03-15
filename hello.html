@@ -124,18 +124,21 @@ body::after {
 <body>
   <!-- Page 1: ONLY "this is from suzaina" + button -->
   <div class="page active" id="page1">
-    <h2>this is from suzaina</h2>
+    <h2>This is from suzaina</h2>
     <button class="btn" onclick="nextPage()">click here</button>
   </div>
 
-  <!-- Page 2: "Hello cutie get well soon" -->
+  <!-- Page 2: ONLY "get well soon" -->
   <div class="page" id="page2">
-    <h1>Hello cutie 💖 get well soon</h1>
+    <h1> Hello cutie!! Get well soon 💖</h1>
   </div>
 
 <script>
 function nextPage() {
+  // Hide page 1
   document.getElementById('page1').classList.remove('active');
+  
+  // Show page 2 after smooth transition
   setTimeout(() => {
     document.getElementById('page2').classList.add('active');
   }, 400);
